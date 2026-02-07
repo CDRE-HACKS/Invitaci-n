@@ -77,12 +77,18 @@ button {
 
 <body>
 
-<div class="card">
+<div class="card" id="card">
     <h1>💘 San Valentín 💘</h1>
-    <p><strong>¿Quieres ser mi San Valentín?</strong></p>
+    <p id="pregunta"><strong>¿Quieres ser mi San Valentín?</strong></p>
 
-    <button class="yes" onclick="aceptar()">Sí 💖</button>
-    <button class="no" id="noBtn">No 🙈</button>
+    <div id="botones">
+        <button class="yes" onclick="aceptar()">Sí 💖</button>
+        <button class="no" id="noBtn">No 🙈</button>
+    </div>
+
+    <p id="mensaje" style="display:none; font-size:18px; color:#ff4d6d; margin-top:20px;">
+        💖 Como dijiste que sí, entonces yo te iré a traer a la uni ese día 😉
+    </p>
 </div>
 
 <script>
@@ -111,10 +117,13 @@ noBtn.addEventListener("mouseover", () => {
 
 // Cuando dice que sí
 function aceptar() {
-    alert("Como dijiste que sí 💖\nEntonces yo te iré a traer a la uni ese día 😉");
-    }
+    document.getElementById("pregunta").style.display = "none";
+    document.getElementById("botones").style.display = "none";
+    document.getElementById("mensaje").style.display = "block";
+}
 </script>
 
 </body>
 </html>
+
 
