@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>San Valentín 💘</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    max-width: 380px;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+p {
+    font-size: 17px;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+.no {
+    background: #ddd;
+    position: absolute;
+}
+
+/* Corazones */
+.heart {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>💘 San Valentín 💘</h1>
+    <p><strong>¿Quieres ser mi San Valentín?</strong></p>
+
+    <button class="yes" onclick="aceptar()">Sí 💖</button>
+    <button class="no" id="noBtn">No 🙈</button>
+</div>
+
+<script>
+// Corazones flotando
+function crearCorazon() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(crearCorazon, 300);
+
+// Botón NO se mueve
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Cuando dice que sí
+function aceptar() {
+    alert("Como dijiste que sí 💖\nEntonces yo te iré a traer a la uni ese día 😉");
+
+    // 👉 CAMBIA TU_NUMERO (ejemplo: 50588887777)
+    const numero = "50588225181";
+    const mensaje = encodeURIComponent(
+        "Dije que SÍ 💖✨ Como dijiste que sí, entonces tú me irás a traer a la uni ese día 😉"
+    );
+
+    window.location.href = `https://wa.me/${numero}?text=${mensaje}`;
+}
+</script>
+
+</body>
+</html>
