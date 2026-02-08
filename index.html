@@ -81,17 +81,28 @@ button {
     <h1>💘 valentine's day 💘</h1>
     <p id="pregunta"><strong>¿Quieres ser mi San Valentín?</strong></p>
 
-    <div id="botones">
-        <button class="yes" onclick="aceptar()">Sí 💗</button>
-        <button class="no" id="noBtn">No 🙈</button>
-    </div>
+<div id="segura" style="display:none; margin-top:15px;">
+    <p style="font-size:18px; color:#ff4d6d;">
+        <strong>¿Estás segura? 🥺</strong>
+    </p>
+
+    <img id="imgSegura"
+         src="cattriste.jpg"
+         style="width:100%; max-width:250px; border-radius:20px; margin-top:10px;">
+</div>
+
+<div id="botones">
+    <button class="yes" onclick="aceptar()">Sí 💖</button>
+    <button class="no" onclick="dudar()">No 🙈</button>
+</div>
+
 
 <div id="mensaje" style="display:none; margin-top:20px;">
     <p style="font-size:18px; color:#ff4d6d;">
         💖 Entonces yo te iré a traer a la uni ese día 😉
     </p>
 
-    <img src="perrito.png" alt="Nuestra foto"
+    <img src="catflower.jpg" alt="Nuestra foto"
          style="
             width:100%;
             max-width:300px;
@@ -103,7 +114,8 @@ button {
 </div>
 
 <script>
-// Corazones flotando
+<script>
+// ================= CORAZONES =================
 function crearCorazon() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -117,25 +129,29 @@ function crearCorazon() {
 }
 setInterval(crearCorazon, 300);
 
-// Botón NO se mueve
-const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 100);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-});
+// ================= ROTAR IMÁGENES CUANDO DICE NO =================
+let indiceSegura = 0;
+const fotosSegura = ["cattriste.jpg", "catflower.jpg"];
 
-// Cuando dice que sí
+function dudar() {
+    document.getElementById("pregunta").style.display = "none";
+    document.getElementById("segura").style.display = "block";
+
+    indiceSegura = (indiceSegura + 1) % fotosSegura.length;
+    document.getElementById("imgSegura").src = fotosSegura[indiceSegura];
+}
+
+// ================= CUANDO DICE QUE SÍ =================
 function aceptar() {
     document.getElementById("pregunta").style.display = "none";
+    document.getElementById("segura").style.display = "none";
     document.getElementById("botones").style.display = "none";
     document.getElementById("mensaje").style.display = "block";
 }
 </script>
-
 </body>
 </html>
+
 
 
 
