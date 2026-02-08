@@ -135,27 +135,6 @@ function dudar() {
 }
 
 
-    // ================= EXPLOSIÓN DE AMOR =================
-function explosion() {
-    for (let i = 0; i < 30; i++) {
-        const boom = document.createElement("div");
-        boom.className = "explosion";
-        boom.innerHTML = "💖";
-
-        const x = (Math.random() * 400 - 200) + "px";
-        const y = (Math.random() * 400 - 200) + "px";
-
-        boom.style.setProperty("--x", x);
-        boom.style.setProperty("--y", y);
-
-        boom.style.left = "50%";
-        boom.style.top = "50%";
-
-        document.body.appendChild(boom);
-
-        setTimeout(() => boom.remove(), 1200);
-    }
-}
 
 // ================= CUANDO DICE QUE SÍ =================
 function aceptar() {
@@ -164,7 +143,7 @@ function aceptar() {
     document.getElementById("botones").style.display = "none";
     document.getElementById("mensaje").style.display = "block";
 
-    explosion();
+    
 }
 
 </script>
