@@ -51,7 +51,6 @@ button {
 
 .no {
     background: #ddd;
-    position: absolute;
 }
 
 /* Corazones */
@@ -60,6 +59,7 @@ button {
     color: rgba(255, 255, 255, 0.7);
     font-size: 20px;
     animation: float 6s linear infinite;
+    z-index: 1;
 }
 
 @keyframes float {
@@ -77,43 +77,36 @@ button {
 
 <body>
 
-<div class="card" id="card">
-    <h1>💘 valentine's day 💘</h1>
+<div class="card">
+    <h1>💘 Valentine's Day 💘</h1>
+
     <p id="pregunta"><strong>¿Quieres ser mi San Valentín?</strong></p>
 
-<div id="segura" style="display:none; margin-top:15px;">
-    <p style="font-size:18px; color:#ff4d6d;">
-        <strong>¿Estás segura? 🥺</strong>
-    </p>
+    <div id="segura" style="display:none; margin-top:15px;">
+        <p style="font-size:18px; color:#ff4d6d;">
+            <strong>¿Estás segura? 🥺</strong>
+        </p>
 
-    <img id="imgSegura"
-         src="cattriste.jpg"
-         style="width:100%; max-width:250px; border-radius:20px; margin-top:10px;">
+        <img id="imgSegura"
+             src="cattriste.jpg"
+             style="width:100%; max-width:250px; border-radius:20px; margin-top:10px;">
+    </div>
+
+    <div id="botones">
+        <button class="yes" onclick="aceptar()">Sí 💗</button>
+        <button class="no" onclick="dudar()">No 🙈</button>
+    </div>
+
+    <div id="mensaje" style="display:none; margin-top:20px;">
+        <p style="font-size:18px; color:#ff4d6d;">
+            💖 Entonces yo te iré a traer a la uni ese día 😉
+        </p>
+
+        <img src="catflower.jpg"
+             style="width:100%; max-width:300px; border-radius:20px; margin-top:15px; box-shadow:0 10px 20px rgba(0,0,0,0.25);">
+    </div>
 </div>
 
-<div id="botones">
-    <button class="yes" onclick="aceptar()">Sí 💖</button>
-    <button class="no" onclick="dudar()">No 🙈</button>
-</div>
-
-
-<div id="mensaje" style="display:none; margin-top:20px;">
-    <p style="font-size:18px; color:#ff4d6d;">
-        💖 Entonces yo te iré a traer a la uni ese día 😉
-    </p>
-
-    <img src="catflower.jpg" alt="Nuestra foto"
-         style="
-            width:100%;
-            max-width:300px;
-            border-radius:20px;
-            margin-top:15px;
-            box-shadow:0 10px 20px rgba(0,0,0,0.25);
-         ">
-</div>
-</div>
-
-<script>
 <script>
 // ================= CORAZONES =================
 function crearCorazon() {
@@ -129,9 +122,9 @@ function crearCorazon() {
 }
 setInterval(crearCorazon, 300);
 
-// ================= ROTAR IMÁGENES CUANDO DICE NO =================
+// ================= ROTAR IMÁGENES AL DECIR NO =================
 let indiceSegura = 0;
-const fotosSegura = ["cattriste.jpg", "cattt.jpg"];
+const fotosSegura = ["cattriste.jpg", "catflower.jpg"];
 
 function dudar() {
     document.getElementById("pregunta").style.display = "none";
@@ -149,8 +142,10 @@ function aceptar() {
     document.getElementById("mensaje").style.display = "block";
 }
 </script>
+
 </body>
 </html>
+
 
 
 
