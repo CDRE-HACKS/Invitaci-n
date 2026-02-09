@@ -49,6 +49,7 @@ button {
     background: #ddd;
 }
 
+/* Corazones */
 .heart {
     position: absolute;
     color: rgba(255,255,255,0.7);
@@ -74,7 +75,8 @@ button {
         <p style="font-size:18px; color:#ff4d6d;">
             <strong>¿Estás segura? 🥺</strong>
         </p>
-        <img src="cattriste.jpg" style="width:100%; max-width:250px; border-radius:20px;">
+        <img src="cattriste.jpg"
+             style="width:100%; max-width:250px; border-radius:20px;">
     </div>
 
     <div id="botones">
@@ -86,43 +88,57 @@ button {
         <p style="font-size:18px; color:#ff4d6d;">
             💖 Entonces yo te iré a traer a la uni ese día 😉
         </p>
-        <img src="catflower.jpg" style="width:100%; max-width:300px; border-radius:20px; margin-top:15px;">
+
+        <img src="catflower.jpg"
+             style="width:100%; max-width:300px; border-radius:20px; margin-top:15px;">
     </div>
 </div>
 
 <script>
-// corazones
+// ===== CONTADOR DE "NO" =====
+let vecesNo = 0;
+
+// Corazones flotando
 setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "❤";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.fontSize = (15 + Math.random() * 20) + "px";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 6000);
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
 }, 400);
 
+// NO → suma contador
 function dudar() {
+    vecesNo++;
     document.getElementById("segura").style.display = "block";
 }
 
+// SÍ → muestra mensaje + envía datos
 function aceptar() {
     document.getElementById("pregunta").style.display = "none";
     document.getElementById("botones").style.display = "none";
     document.getElementById("segura").style.display = "none";
     document.getElementById("mensaje").style.display = "block";
 
-    // 🔔 AVISO DEFINITIVO SIN OPTIONS
-    const img = new Image();
-    img.src =
-      "https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632"
-      + "?respuesta=SI"
-      + "&hora=" + Date.now();
+    // Webhook SOLO cuando dice que sí
+    fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            respuesta: "SI",
+            veces_no: vecesNo
+        })
+    });
 }
 </script>
 
 </body>
 </html>
+
 
 
 
