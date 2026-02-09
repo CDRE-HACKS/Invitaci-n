@@ -111,7 +111,7 @@ function dudar() {
     document.getElementById("segura").style.display = "block";
 }
 
-// SÍ → muestra mensaje + webhook
+<script>
 function aceptar() {
     document.getElementById("pregunta").style.display = "none";
     document.getElementById("botones").style.display = "none";
@@ -119,21 +119,12 @@ function aceptar() {
     document.getElementById("mensaje").style.display = "block";
 
     // 🔔 Webhook SOLO cuando dice que sí
-fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    respuesta: "SI"
-  })
-});
-
+    fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632?respuesta=SI&hora=" + new Date().toLocaleString());
 }
 </script>
-
 </body>
 </html>
+
 
 
 
