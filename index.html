@@ -132,18 +132,19 @@ function aceptar() {
 
     // 🔔 Webhook con conteo
     fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            respuesta: "SI",
-            veces_no: conteoNo
-        })
-    });
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+        respuesta: "SI",
+        veces_no: conteoNo
+    })
+});
 }
 </script>
 
 </body>
 </html>
+
 
 
 
