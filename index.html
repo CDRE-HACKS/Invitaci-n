@@ -75,7 +75,8 @@ button {
         <p style="font-size:18px; color:#ff4d6d;">
             <strong>¿Estás segura? 🥺</strong>
         </p>
-        <img src="cattriste.jpg"
+        <img id="imgSegura"
+             src="cattriste1.jpg"
              style="width:100%; max-width:250px; border-radius:20px;">
     </div>
 
@@ -95,10 +96,7 @@ button {
 </div>
 
 <script>
-// ===== CONTADOR DE "NO" =====
-let vecesNo = 0;
-
-// Corazones flotando
+// ❤️ Corazones
 setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -109,28 +107,36 @@ setInterval(() => {
     setTimeout(() => heart.remove(), 6000);
 }, 400);
 
-// NO → suma contador
+// 🖼️ Rotación + conteo de NO
+const imagenesNo = ["cattriste.jpg", "cattt.jpg"];
+let indiceImg = 0;
+let conteoNo = 0;
+
 function dudar() {
-    vecesNo++;
-    document.getElementById("segura").style.display = "block";
+    conteoNo++;
+
+    const segura = document.getElementById("segura");
+    const img = document.getElementById("imgSegura");
+
+    segura.style.display = "block";
+    indiceImg = (indiceImg + 1) % imagenesNo.length;
+    img.src = imagenesNo[indiceImg];
 }
 
-// SÍ → muestra mensaje + envía datos
+// ✅ Cuando dice SÍ
 function aceptar() {
     document.getElementById("pregunta").style.display = "none";
     document.getElementById("botones").style.display = "none";
     document.getElementById("segura").style.display = "none";
     document.getElementById("mensaje").style.display = "block";
 
-    // Webhook SOLO cuando dice que sí
+    // 🔔 Webhook con conteo
     fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             respuesta: "SI",
-            veces_no: vecesNo
+            veces_no: conteoNo
         })
     });
 }
@@ -138,6 +144,8 @@ function aceptar() {
 
 </body>
 </html>
+
+
 
 
 
