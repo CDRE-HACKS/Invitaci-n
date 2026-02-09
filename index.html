@@ -119,14 +119,22 @@ function aceptar() {
     document.getElementById("mensaje").style.display = "block";
 
     // 🔔 Webhook SOLO cuando dice que sí
-    fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
-        method: "GET"
-    });
+fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    respuesta: "SI"
+  })
+});
+
 }
 </script>
 
 </body>
 </html>
+
 
 
 
