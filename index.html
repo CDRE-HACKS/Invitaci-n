@@ -142,16 +142,10 @@ function aceptar() {
     document.getElementById("segura").style.display = "none";
     document.getElementById("botones").style.display = "none";
     document.getElementById("mensaje").style.display = "block";
-fetch("https://webhook.site/125a74e0-2c39-4445-9e57-2e088594a4d1", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        mensaje: "Ella dijo que SÍ 💖",
-        fecha: ahora.toLocaleDateString(),
-        hora: ahora.toLocaleTimeString()
-    })
+ // 🔔 ENVIAR WEBHOOK SOLO CUANDO DICE QUE SÍ
+    fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
+        method: "GET"
+    });
 });
 
     
@@ -161,6 +155,7 @@ fetch("https://webhook.site/125a74e0-2c39-4445-9e57-2e088594a4d1", {
 
 </body>
 </html>
+
 
 
 
