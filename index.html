@@ -8,22 +8,21 @@
 body {
     margin: 0;
     height: 100vh;
-    overflow: hidden;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .card {
     background: white;
-    padding: 35px;
+    padding: 30px;
     border-radius: 25px;
     text-align: center;
     box-shadow: 0 15px 30px rgba(0,0,0,0.25);
     max-width: 380px;
-    position: relative;
     z-index: 2;
 }
 
@@ -49,7 +48,6 @@ button {
     background: #ddd;
 }
 
-/* Corazones */
 .heart {
     position: absolute;
     color: rgba(255,255,255,0.7);
@@ -67,16 +65,14 @@ button {
 <body>
 
 <div class="card">
+
     <h1>💘 Valentine's Day 💘</h1>
 
     <p id="pregunta"><strong>¿Quieres ser mi San Valentín?</strong></p>
 
-    <div id="segura" style="display:none; margin-top:15px;">
-        <p style="font-size:18px; color:#ff4d6d;">
-            <strong>¿Estás segura? 🥺</strong>
-        </p>
-        <img src="cattriste.jpg"
-             style="width:100%; max-width:250px; border-radius:20px;">
+    <div id="segura" style="display:none;">
+        <p style="color:#ff4d6d; font-size:18px;"><strong>¿Estás segura? 🥺</strong></p>
+        <img src="cattriste.jpg" style="width:100%; max-width:250px; border-radius:20px;">
     </div>
 
     <div id="botones">
@@ -84,18 +80,17 @@ button {
         <button class="no" onclick="dudar()">No 🙈</button>
     </div>
 
-    <div id="mensaje" style="display:none; margin-top:20px;">
+    <div id="mensaje" style="display:none;">
         <p style="font-size:18px; color:#ff4d6d;">
             💖 Entonces yo te iré a traer a la uni ese día 😉
         </p>
-
-        <img src="catflower.jpg"
-             style="width:100%; max-width:300px; border-radius:20px; margin-top:15px;">
+        <img src="catflower.jpg" style="width:100%; max-width:300px; border-radius:20px;">
     </div>
+
 </div>
 
 <script>
-// Corazones flotando
+// corazones
 setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -106,24 +101,35 @@ setInterval(() => {
     setTimeout(() => heart.remove(), 6000);
 }, 400);
 
-// NO → solo muestra "¿estás segura?"
+// botón NO
 function dudar() {
     document.getElementById("segura").style.display = "block";
 }
 
-<script>
+// botón SÍ
 function aceptar() {
     document.getElementById("pregunta").style.display = "none";
     document.getElementById("botones").style.display = "none";
     document.getElementById("segura").style.display = "none";
     document.getElementById("mensaje").style.display = "block";
 
-    // 🔔 Webhook SOLO cuando dice que sí
-    fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632?respuesta=SI&hora=" + new Date().toLocaleString());
+    fetch("https://webhook.site/795c187a-b5e1-4c92-b2d8-eccb7c189632", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            respuesta: "SI",
+            fecha: new Date().toISOString()
+        })
+    });
 }
 </script>
+
 </body>
 </html>
+
+
 
 
 
